@@ -404,6 +404,8 @@ GameObject:
   - component: {fileID: 2118069737529663550}
   - component: {fileID: 5659936344674000865}
   - component: {fileID: 7546332264309217134}
+  - component: {fileID: 6488585301824191265}
+  - component: {fileID: -4241852327659004396}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -478,3 +480,47 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!50 &6488585301824191265
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001080185195492623}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 2
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &-4241852327659004396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001080185195492623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fcd8f053d5ce0e4997d3beb68012ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputReader: {fileID: 11400000, guid: 92d9cabf9ffde8d42a835a6a0713fbd5, type: 2}
+  tankBody: {fileID: 7695109964148103684}
+  rb: {fileID: 6488585301824191265}
+  moveSpeed: 4
+  turningRate: 180
