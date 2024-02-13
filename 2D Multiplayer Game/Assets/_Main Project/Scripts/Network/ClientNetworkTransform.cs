@@ -11,7 +11,7 @@ public class ClientNetworkTransform : NetworkTransform
         CanCommitToTransform = IsOwner;
     }
 
-    protected override void Update()
+    /*protected override void Update()
     {
         CanCommitToTransform = IsOwner;
         base.Update();
@@ -25,7 +25,7 @@ public class ClientNetworkTransform : NetworkTransform
                 }
             }
         }
-    }
+    }*/
 
     protected override bool OnIsServerAuthoritative()
     {
