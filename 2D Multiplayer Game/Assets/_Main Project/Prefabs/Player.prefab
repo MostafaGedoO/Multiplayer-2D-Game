@@ -338,7 +338,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.425, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 187704463638994760}
   m_Father: {fileID: 1353160993369609256}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7835436852442607677
@@ -407,6 +408,7 @@ GameObject:
   - component: {fileID: 6488585301824191265}
   - component: {fileID: -4241852327659004396}
   - component: {fileID: 7637396475996721945}
+  - component: {fileID: 504370346945705669}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -539,3 +541,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tankTurret: {fileID: 1353160993369609256}
   inputReader: {fileID: 11400000, guid: 92d9cabf9ffde8d42a835a6a0713fbd5, type: 2}
+--- !u!114 &504370346945705669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7001080185195492623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c630dd8fe711c419c2278f9e16d7a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputReader: {fileID: 11400000, guid: 92d9cabf9ffde8d42a835a6a0713fbd5, type: 2}
+  bulletSpeed: 30
+  bulletSpawnPoint: {fileID: 187704463638994760}
+  clientBullet: {fileID: 103336278656699885, guid: 868ba75cc64dcb04abba45f5bf38c372, type: 3}
+  severBullet: {fileID: 6858464333328194689, guid: b7e0dcff61b7feb46895d5ed94bfe15e, type: 3}
+--- !u!1 &8603705999873586388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 187704463638994760}
+  m_Layer: 0
+  m_Name: Bullet Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &187704463638994760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8603705999873586388}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1854230086325956060}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
