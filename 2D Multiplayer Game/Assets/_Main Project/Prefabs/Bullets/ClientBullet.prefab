@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -142,8 +142,29 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5904801780793542006, guid: 9eac47a9516cb5145ac3485870ba7b37, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5065375009432296639}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 338072742158546494, guid: 9eac47a9516cb5145ac3485870ba7b37, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3427556873901129778}
   m_SourcePrefab: {fileID: 100100000, guid: 9eac47a9516cb5145ac3485870ba7b37, type: 3}
+--- !u!1 &103336278656699885 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 338072742158546494, guid: 9eac47a9516cb5145ac3485870ba7b37, type: 3}
+  m_PrefabInstance: {fileID: 422789238055271379}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-3427556873901129778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103336278656699885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fea34df253b564249b55e9c1d929015f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 1889447400192744941, guid: 53d17a3a0db0c5047a70f5b6a21f580f, type: 3}
 --- !u!4 &6065255221547728549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5904801780793542006, guid: 9eac47a9516cb5145ac3485870ba7b37, type: 3}
