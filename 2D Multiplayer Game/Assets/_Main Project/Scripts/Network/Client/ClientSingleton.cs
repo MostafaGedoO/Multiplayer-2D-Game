@@ -20,17 +20,17 @@ public class ClientSingleton : MonoBehaviour
             return null;
         } 
     }
-
-    private ClientGameManager clientGameManager;
+    public ClientGameManager ClientGameManager {  get; private set; }
 
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
     }
 
-    public async Task CreateClientAsync()
+    public async Task<bool> CreateClientAsync()
     {
-        clientGameManager = new ClientGameManager();
-        await clientGameManager.InitAsync();
+        ClientGameManager = new ClientGameManager();
+        return await ClientGameManager.InitAsync();
     }
 }
+ 

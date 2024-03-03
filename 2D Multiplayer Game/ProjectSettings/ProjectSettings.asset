@@ -759,10 +759,10 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: a4028ca0-5696-4732-881f-dc5e755d04bd
+  cloudProjectId: 2e8d139f-1a9d-4cf9-8462-c4cf192e4dde
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 2D Multiplayer Game
+  projectName: 2D Multiplayer Game (1)
   organizationId: moustafagosto12345
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
