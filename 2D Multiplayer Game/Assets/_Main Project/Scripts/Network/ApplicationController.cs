@@ -22,14 +22,15 @@ public class ApplicationController : MonoBehaviour
 
         }
         else //Host or Client
+           
         {
-            //Create Client Singleton
-            ClientSingleton _clientSingleton = Instantiate(clientSingletonPrefab);
-            bool _authState = await _clientSingleton.CreateClientAsync();
-
             //Create Host Singleton
             HostSingleton _hostSingleton = Instantiate(hostSingletonPrefab);
             _hostSingleton.CreateHost();
+         
+            //Create Client Singleton
+            ClientSingleton _clientSingleton = Instantiate(clientSingletonPrefab);
+            bool _authState = await _clientSingleton.CreateClientAsync();
 
             if(_authState)
             {
