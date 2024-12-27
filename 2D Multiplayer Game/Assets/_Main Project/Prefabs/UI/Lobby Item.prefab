@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 3269747667643316019}
   - component: {fileID: 8835378284300756903}
   - component: {fileID: 8497667962080089436}
+  - component: {fileID: 5161790429550529958}
   m_Layer: 5
   m_Name: Lobby Item
   m_TagString: Untagged
@@ -215,6 +216,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5161790429550529958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2930499409264369647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d3cffa78ce2d94a80218a5445b6f05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lobbyNameText: {fileID: 2254264652510865887}
+  lobbyPlayersNumberText: {fileID: 4387308274031337170}
+  joinButton: {fileID: 414243034960878553}
 --- !u!1 &4192062345317341379
 GameObject:
   m_ObjectHideFlags: 0
