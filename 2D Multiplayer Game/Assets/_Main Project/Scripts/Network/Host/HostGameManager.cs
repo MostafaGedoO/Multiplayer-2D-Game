@@ -48,13 +48,15 @@ public class HostGameManager
         RelayServerData serverData = new RelayServerData(allocation,"udp");
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(serverData);
 
+        string _playerNeme = PlayerPrefs.GetString(PlayerNameHandler.playerNameKey, "Player" + UnityEngine.Random.Range(100, 1000));
+
         try
         {
             CreateLobbyOptions _lobbyOptions = new CreateLobbyOptions();
             _lobbyOptions.IsPrivate = false;
             _lobbyOptions.Data = new Dictionary<string, DataObject> {{"JoinCode",new DataObject(visibility: DataObject.VisibilityOptions.Member,value: JoinCode)}};
 
-            Lobby _lobby = await Lobbies.Instance.CreateLobbyAsync("Gedo's Room", maxPlayers, _lobbyOptions);
+            Lobby _lobby = await Lobbies.Instance.CreateLobbyAsync($"{_playerNeme}'s Room", maxPlayers, _lobbyOptions);
             lobbyId = _lobby.Id;
 
             HostSingleton.Instance.StartCoroutine(HeartBeatLobby(15));
@@ -64,6 +66,16 @@ public class HostGameManager
             Debug.Log(e);
             return;
         }
+
+        //Making a networkServer for it to listen for the connection Approval
+        NetworkServer _networkServer = new NetworkServer();
+
+        //Setting the Player Data
+        UserData _userDate = new UserData { userName = _playerNeme};
+
+        //Making the byte[] the we can pass to the networkManager
+        string _dataJson = JsonUtility.ToJson(_userDate);
+        NetworkManager.Singleton.NetworkConfig.ConnectionData = System.Text.Encoding.UTF8.GetBytes(_dataJson);
 
         NetworkManager.Singleton.StartHost();
         NetworkManager.Singleton.SceneManager.LoadScene("Game", LoadSceneMode.Single);

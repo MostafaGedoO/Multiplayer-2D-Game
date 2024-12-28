@@ -49,6 +49,15 @@ public class ClientGameManager
 
         RelayServerData _relayServerData = new RelayServerData(joinAllocation,"udp");
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(_relayServerData);
+        
+        //Setting the Player Data
+        UserData _userDate = new UserData { userName = PlayerPrefs.GetString(PlayerNameHandler.playerNameKey, "Player" + UnityEngine.Random.Range(100, 1000)) };
+
+        //Making the byte[] the we can pass to the networkManager
+        string _dataJson = JsonUtility.ToJson(_userDate);
+        NetworkManager.Singleton.NetworkConfig.ConnectionData = System.Text.Encoding.UTF8.GetBytes(_dataJson);
+
+
         NetworkManager.Singleton.StartClient();
     }
 }
