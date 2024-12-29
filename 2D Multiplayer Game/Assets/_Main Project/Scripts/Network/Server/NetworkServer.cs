@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class NetworkServer
+public class NetworkServer : IDisposable
 {
     private NetworkManager networkManager;
 
@@ -49,6 +49,16 @@ public class NetworkServer
         {
             clientIDToAuthID.Remove(_clientId);
             authIDToUserData.Remove(_authId);
+        }
+    }
+
+    public void Dispose()
+    {
+        if(networkManager !=  null)
+        {
+            networkManager.ConnectionApprovalCallback -= ApprovalCheck;
+            networkManager.OnServerStarted -= NetworkManager_OnServerStarted;
+            networkManager.OnClientDisconnectCallback -= NetworkManager_OnClientDisconnectCallback;
         }
     }
 }

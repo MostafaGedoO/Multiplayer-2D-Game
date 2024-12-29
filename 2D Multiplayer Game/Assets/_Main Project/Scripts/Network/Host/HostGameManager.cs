@@ -13,7 +13,7 @@ using Unity.Services.Relay.Models;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class HostGameManager
+public class HostGameManager : IDisposable
 {
     private Allocation allocation;
 
@@ -22,6 +22,7 @@ public class HostGameManager
 
     private string lobbyId;
 
+    NetworkServer networkServer;
 
     public async Task StartHostAsync()
     {
@@ -69,7 +70,7 @@ public class HostGameManager
         }
 
         //Making a networkServer for it to listen for the connection Approval
-        NetworkServer _networkServer = new NetworkServer();
+        networkServer = new NetworkServer();
 
         //Setting the Player Data
         UserData _userDate = new UserData { UserName = _playerNeme, AuthId = AuthenticationService.Instance.PlayerId };
@@ -90,5 +91,28 @@ public class HostGameManager
             Lobbies.Instance.SendHeartbeatPingAsync(lobbyId);
             yield return _delay;
         }
+    }
+
+    public async void Dispose()
+    {
+        HostSingleton.Instance.StopCoroutine(nameof(HeartBeatLobby));
+        
+        if (!string.IsNullOrEmpty(lobbyId))
+        {
+            try
+            {
+                Debug.Log("Deleting Lobby");
+                await Lobbies.Instance.DeleteLobbyAsync(lobbyId);
+                Debug.Log("Deleting Lobby Done");
+            }
+            catch(LobbyServiceException e)
+            {
+                Debug.Log(e);
+            }
+
+            lobbyId = string.Empty;
+        }
+        
+        networkServer?.Dispose();
     }
 }

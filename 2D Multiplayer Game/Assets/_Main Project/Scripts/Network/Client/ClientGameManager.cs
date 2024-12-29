@@ -12,16 +12,17 @@ using Unity.Services.Relay.Models;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ClientGameManager 
+public class ClientGameManager : IDisposable
 {
     private JoinAllocation joinAllocation;
+    NetworkClient networkClient;
 
     public async Task<bool> InitAsync()
     {
         await UnityServices.InitializeAsync();
         AuthenticationState _authenticationState = await AuthenticationHandler.DoAuthentication();
 
-        NetworkClient _networkClient = new NetworkClient();
+        networkClient = new NetworkClient();
 
         if (_authenticationState == AuthenticationState.Authenticated)
         {
@@ -63,5 +64,10 @@ public class ClientGameManager
 
 
         NetworkManager.Singleton.StartClient();
+    }
+
+    public void Dispose()
+    {
+        networkClient?.Dispose();
     }
 }

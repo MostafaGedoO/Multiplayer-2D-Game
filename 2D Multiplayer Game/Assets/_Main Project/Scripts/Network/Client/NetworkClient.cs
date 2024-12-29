@@ -1,8 +1,9 @@
 
+using System;
 using Unity.Netcode;
 using UnityEngine.SceneManagement;
 
-public class NetworkClient 
+public class NetworkClient : IDisposable
 {
     private NetworkManager networkManager;
     private const string mainMenuSceneName = "MainMenu";
@@ -27,6 +28,14 @@ public class NetworkClient
             {
                 networkManager.Shutdown();
             }
+        }
+    }
+
+    public void Dispose()
+    {
+        if(networkManager != null)
+        {
+            networkManager.OnClientDisconnectCallback -= NetworkManager_OnClientDisconnectCallback;
         }
     }
 }
