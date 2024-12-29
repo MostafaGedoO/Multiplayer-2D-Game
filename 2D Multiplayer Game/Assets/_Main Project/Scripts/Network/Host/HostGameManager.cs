@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
+using Unity.Services.Authentication;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using Unity.Services.Relay;
@@ -71,7 +72,7 @@ public class HostGameManager
         NetworkServer _networkServer = new NetworkServer();
 
         //Setting the Player Data
-        UserData _userDate = new UserData { userName = _playerNeme};
+        UserData _userDate = new UserData { UserName = _playerNeme, AuthId = AuthenticationService.Instance.PlayerId };
 
         //Making the byte[] the we can pass to the networkManager
         string _dataJson = JsonUtility.ToJson(_userDate);

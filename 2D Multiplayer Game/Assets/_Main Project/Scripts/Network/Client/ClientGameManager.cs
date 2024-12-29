@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
+using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
@@ -19,6 +20,8 @@ public class ClientGameManager
     {
         await UnityServices.InitializeAsync();
         AuthenticationState _authenticationState = await AuthenticationHandler.DoAuthentication();
+
+        NetworkClient _networkClient = new NetworkClient();
 
         if (_authenticationState == AuthenticationState.Authenticated)
         {
@@ -51,7 +54,8 @@ public class ClientGameManager
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(_relayServerData);
         
         //Setting the Player Data
-        UserData _userDate = new UserData { userName = PlayerPrefs.GetString(PlayerNameHandler.playerNameKey, "Player" + UnityEngine.Random.Range(100, 1000)) };
+        UserData _userDate = new UserData { UserName = PlayerPrefs.GetString(PlayerNameHandler.playerNameKey, "Player" + UnityEngine.Random.Range(100, 1000)),
+            AuthId = AuthenticationService.Instance.PlayerId };
 
         //Making the byte[] the we can pass to the networkManager
         string _dataJson = JsonUtility.ToJson(_userDate);
