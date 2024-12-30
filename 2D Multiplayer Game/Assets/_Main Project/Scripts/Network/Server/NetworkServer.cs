@@ -33,6 +33,7 @@ public class NetworkServer : IDisposable
         authIDToUserData[_userData.AuthId] = _userData;
 
         //Approving the connection
+        _response.Position = SpwanPoint.GetRandomSpwanPoint();
         _response.Approved = true;
         _response.CreatePlayerObject = true;
     }
@@ -50,6 +51,15 @@ public class NetworkServer : IDisposable
             clientIDToAuthID.Remove(_clientId);
             authIDToUserData.Remove(_authId);
         }
+    }
+
+    public UserData GetClientUserData(ulong _clientId)
+    {
+        if (clientIDToAuthID.TryGetValue(_clientId, out string _authId))
+        {
+            return authIDToUserData[_authId];
+        }
+        return null;
     }
 
     public void Dispose()

@@ -22,7 +22,7 @@ public class HostGameManager : IDisposable
 
     private string lobbyId;
 
-    NetworkServer networkServer;
+    public NetworkServer NetworkServer;
 
     public async Task StartHostAsync()
     {
@@ -70,7 +70,7 @@ public class HostGameManager : IDisposable
         }
 
         //Making a networkServer for it to listen for the connection Approval
-        networkServer = new NetworkServer();
+        NetworkServer = new NetworkServer();
 
         //Setting the Player Data
         UserData _userDate = new UserData { UserName = _playerNeme, AuthId = AuthenticationService.Instance.PlayerId };
@@ -101,9 +101,7 @@ public class HostGameManager : IDisposable
         {
             try
             {
-                Debug.Log("Deleting Lobby");
                 await Lobbies.Instance.DeleteLobbyAsync(lobbyId);
-                Debug.Log("Deleting Lobby Done");
             }
             catch(LobbyServiceException e)
             {
@@ -113,6 +111,6 @@ public class HostGameManager : IDisposable
             lobbyId = string.Empty;
         }
         
-        networkServer?.Dispose();
+        NetworkServer?.Dispose();
     }
 }
