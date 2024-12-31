@@ -1238,6 +1238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 5761553650661496360}
   playerNameText: {fileID: 4045500377902376975}
+  <Health>k__BackingField: {fileID: 6504211221101077222}
 --- !u!1 &8603705999873586388
 GameObject:
   m_ObjectHideFlags: 0
