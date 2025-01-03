@@ -20,7 +20,7 @@ public class PlayerManager : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI playerNameText;
 
 
-    private NetworkVariable<FixedString32Bytes> playerName = new NetworkVariable<FixedString32Bytes>();
+    public NetworkVariable<FixedString32Bytes> playerName = new NetworkVariable<FixedString32Bytes>();
 
     public static event Action<PlayerManager> OnAPlayerSpawn;
     public static event Action<PlayerManager> OnAPlayerDespawn;
