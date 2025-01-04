@@ -1,22 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class Coin : NetworkBehaviour
 {
     [SerializeField] private GameObject coinSprite;
 
-    protected int coinValue = 1;
+    protected int coinValue;
     protected bool alreadyCollected;
 
     public abstract int Collect();
 
-    public void SetValue(int _coinValue)
+    private void OnEnable()
     {
-        coinValue = _coinValue;
+        ChangeCoinValue();
     }
 
+    protected void ChangeCoinValue()
+    {
+        coinValue = Random.Range(1, 16);
+    }
+    
     protected void SetCoinVisualState(bool _state)
     {
         coinSprite.SetActive(_state);

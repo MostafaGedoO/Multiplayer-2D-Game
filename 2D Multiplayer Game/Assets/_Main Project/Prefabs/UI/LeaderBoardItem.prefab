@@ -147,3 +147,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94c3bdf981636945b374a036c406c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myColor: {r: 1, g: 0.87969315, b: 0.5424528, a: 1}
+  leaderBoardItemText: {fileID: 4262060897604546351}

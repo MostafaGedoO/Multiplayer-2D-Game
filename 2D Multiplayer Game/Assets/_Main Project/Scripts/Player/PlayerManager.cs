@@ -10,6 +10,7 @@ using UnityEngine;
 public class PlayerManager : NetworkBehaviour
 {
     [field: SerializeField] public Health Health { get; private set; }
+    [field: SerializeField] public CoinCollector CoinCollector { get; private set; }
     
     [Space]
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
