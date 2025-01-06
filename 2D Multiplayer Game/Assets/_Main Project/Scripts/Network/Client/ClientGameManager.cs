@@ -19,7 +19,10 @@ public class ClientGameManager : IDisposable
 
     public async Task<bool> InitAsync()
     {
-        await UnityServices.InitializeAsync();
+        InitializationOptions _options = new InitializationOptions();
+        _options.SetProfile(UnityEngine.Random.Range(0, 1000).ToString());
+
+        await UnityServices.InitializeAsync(_options);
         AuthenticationState _authenticationState = await AuthenticationHandler.DoAuthentication();
 
         networkClient = new NetworkClient();
