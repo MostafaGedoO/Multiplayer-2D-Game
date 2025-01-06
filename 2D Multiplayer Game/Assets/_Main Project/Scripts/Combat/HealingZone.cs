@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,9 @@ public class HealingZone : NetworkBehaviour
     [SerializeField] private float TimeToRestorePowerOnIdle = 5f;
     [SerializeField] private float healTickRate = 1f;
     [SerializeField] private int healPerTick = 3;
+    [Space]
+    [SerializeField] private Color poweredColor;
+    [SerializeField] private Color cooldownColor;
 
     private List<PlayerManager> playerManagers = new List<PlayerManager>();
     private float timer;
@@ -65,13 +69,13 @@ public class HealingZone : NetworkBehaviour
             cooldownTimer += Time.deltaTime;
             currentPowerBar = (int)cooldownTimer;
 
-            UpdatePowerParClientRpc(currentPowerBar, maxHealPower);
+            UpdatePowerParClientRpc(currentPowerBar, maxHealPower, inCooldown);
 
             if (cooldownTimer >= healCooldown)
             {
                 inCooldown = false;
                 currentPowerBar = maxHealPower;
-                UpdatePowerParClientRpc(currentPowerBar, maxHealPower);
+                UpdatePowerParClientRpc(currentPowerBar, maxHealPower, inCooldown);
             }
             else
             {
@@ -111,7 +115,7 @@ public class HealingZone : NetworkBehaviour
                 timer = 0;
                 currentPowerBar--;
 
-                UpdatePowerParClientRpc(currentPowerBar,maxHealPower);
+                UpdatePowerParClientRpc(currentPowerBar,maxHealPower,inCooldown);
 
                 if (currentPowerBar == 0)
                 {
@@ -123,8 +127,9 @@ public class HealingZone : NetworkBehaviour
     }
 
     [ClientRpc]
-    private void UpdatePowerParClientRpc(int _currentPower,int _maxPower)
+    private void UpdatePowerParClientRpc(int _currentPower,int _maxPower,bool _inCooldown)
     {
+        healPowerBar.color = _inCooldown ? cooldownColor : poweredColor;
         healPowerBar.fillAmount = (float)_currentPower / _maxPower;
     }
 }

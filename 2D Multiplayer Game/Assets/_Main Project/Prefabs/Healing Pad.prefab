@@ -168,8 +168,11 @@ MonoBehaviour:
   healPowerBar: {fileID: 2390558387451378047}
   maxHealPower: 30
   healCooldown: 30
+  TimeToRestorePowerOnIdle: 5
   healTickRate: 1
   healPerTick: 3
+  poweredColor: {r: 0.3254902, g: 0.9254902, b: 0.56078434, a: 1}
+  cooldownColor: {r: 1, g: 0.8392157, b: 0, a: 1}
 --- !u!1 &5076930307734874525
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3270737, g: 0.9245283, b: 0.5588449, a: 1}
+  m_Color: {r: 0.3254902, g: 0.9254902, b: 0.56078434, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
