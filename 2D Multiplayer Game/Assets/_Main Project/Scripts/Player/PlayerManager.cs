@@ -20,6 +20,9 @@ public class PlayerManager : NetworkBehaviour
     [Space]
     [SerializeField] private TextMeshProUGUI playerNameText;
 
+    [Header("Player Minimap Color")]
+    [SerializeField] private Color playerColor;
+    [SerializeField] private SpriteRenderer playerMinimapSprite;
 
     public NetworkVariable<FixedString32Bytes> playerName = new NetworkVariable<FixedString32Bytes>();
 
@@ -40,6 +43,7 @@ public class PlayerManager : NetworkBehaviour
         if(IsOwner)
         {
            virtualCamera.Priority = camPriority;
+           playerMinimapSprite.color = playerColor;
         }
     }
 
