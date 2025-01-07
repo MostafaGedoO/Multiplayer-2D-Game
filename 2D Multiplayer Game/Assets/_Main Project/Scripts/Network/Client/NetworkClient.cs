@@ -17,20 +17,25 @@ public class NetworkClient : IDisposable
 
     private void NetworkManager_OnClientDisconnectCallback(ulong clientId)
     {
-        if(clientId == 0 | clientId == networkManager.LocalClientId)
+        if (clientId == 0 | clientId == networkManager.LocalClientId)
         {
-            if (SceneManager.GetActiveScene().name != mainMenuSceneName)
-            {
-                SceneManager.LoadScene(mainMenuSceneName);
-            }
-
-            if(networkManager.IsConnectedClient)
-            {
-                networkManager.Shutdown();
-            }
+            Disconnect();
         }
     }
 
+    public void Disconnect()
+    {
+        if (SceneManager.GetActiveScene().name != mainMenuSceneName)
+        {
+            SceneManager.LoadScene(mainMenuSceneName);
+        }
+
+        if(networkManager.IsConnectedClient)
+        {
+            networkManager.Shutdown();
+        }
+    }
+    
     public void Dispose()
     {
         if(networkManager != null)

@@ -75,12 +75,27 @@ public class HostGameManager : IDisposable
         //Setting the Player Data
         UserData _userDate = new UserData { UserName = _playerNeme, AuthId = AuthenticationService.Instance.PlayerId };
 
-        //Making the byte[] the we can pass to the networkManager
+        //Making the byte[] that we can pass to the networkManager
         string _dataJson = JsonUtility.ToJson(_userDate);
         NetworkManager.Singleton.NetworkConfig.ConnectionData = System.Text.Encoding.UTF8.GetBytes(_dataJson);
 
         NetworkManager.Singleton.StartHost();
+
+        NetworkServer.OnClientLeft += HandleClientLeft;
+        
         NetworkManager.Singleton.SceneManager.LoadScene("Game", LoadSceneMode.Single);
+    }
+
+    private async void HandleClientLeft(string _authId)
+    {
+        try
+        {
+           await Lobbies.Instance.RemovePlayerAsync(lobbyId, _authId);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
     }
 
     private IEnumerator HeartBeatLobby(int _waitTime)
@@ -93,7 +108,7 @@ public class HostGameManager : IDisposable
         }
     }
 
-    public async void Dispose()
+    public async Task ShutDown()
     {
         HostSingleton.Instance.StopCoroutine(nameof(HeartBeatLobby));
         
@@ -111,6 +126,13 @@ public class HostGameManager : IDisposable
             lobbyId = string.Empty;
         }
         
+        NetworkServer.OnClientLeft -= HandleClientLeft;
+        
         NetworkServer?.Dispose();
+    }
+
+    public async void Dispose()
+    {
+        await ShutDown();
     }
 }

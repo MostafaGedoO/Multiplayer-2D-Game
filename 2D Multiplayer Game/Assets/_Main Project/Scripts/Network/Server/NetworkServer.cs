@@ -11,6 +11,7 @@ public class NetworkServer : IDisposable
     private Dictionary<ulong,string> clientIDToAuthID = new Dictionary<ulong,string>();
     private Dictionary<string,UserData> authIDToUserData = new Dictionary<string,UserData>();
 
+    public event Action<string> OnClientLeft;
     public NetworkServer()
     {
         networkManager = NetworkManager.Singleton;
@@ -50,6 +51,7 @@ public class NetworkServer : IDisposable
         {
             clientIDToAuthID.Remove(_clientId);
             authIDToUserData.Remove(_authId);
+            OnClientLeft?.Invoke(_authId);
         }
     }
 
